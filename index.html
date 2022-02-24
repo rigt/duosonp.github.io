@@ -1,16 +1,115 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta lang="ro" />
     <title>Pronumele demonstrative în limba Română!</title>
 </head>
 
 <body>
     <style>
+        body {
+            display: grid;
+            height: 100vh;
+            grid-template: auto 1fr auto / auto 1fr auto;
+        }
+        
+        .flag {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 100%;
+            width: 50px;
+            height: 33px;
+            left: 5px;
+            z-index: 1;
+            position: absolute;
+            border-radius: 0px;
+        }
+        
+        .flag-b {
+            background-color: #002B7F;
+            border-radius: 0px;
+            width: 16px;
+            height: 33px;
+        }
+        
+        .flag-y {
+            background-color: #FCD116;
+            border-radius: 0px;
+            width: 16px;
+            height: 33px;
+        }
+        
+        .flag-r {
+            background-color: #CE1126;
+            border-radius: 0px;
+            width: 16px;
+            height: 33px;
+        }
+        
+        .title {
+            z-index: 2;
+            text-align: center;
+            position: relative;
+            width: 80%;
+            height: 1.8em;
+            display: inline-block;
+            color: snow;
+            left: 20px;
+            padding-right: 10%;
+            text-decoration: none;
+            background-color: rgba(40, 40, 40, 0.0);
+            text-shadow: #002B7F;
+            text-align: center;
+            font-weight: bolder;
+            font-style: italic;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        
+        header {
+            background-color: #111;
+            padding: 0.5rem;
+            grid-column: 1 / 4;
+            overflow: hidden;
+        }
+        
+        .left-sidebar {
+            background: lightblue;
+            grid-column: 1 / 2;
+            display: none;
+            /* not using left-sidebar
+            overflow-y: scroll;
+            */
+        }
+        
+        main {
+            grid-column: 2 / 3;
+            font-family: monospace;
+            font-style: italic;
+            font-size: small;
+            overflow: scroll;
+        }
+        
+        .right-sidebar {
+            grid-column: 3 / 4;
+            display: none;
+            /* not using right-sidebar */
+        }
+        
+        footer {
+            background: wheat;
+            padding: 2rem;
+            text-align: center;
+            grid-column: 1 / 4;
+        }
+        
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 1.5em;
+            box-sizing: border-box;
+            margin: 0px;
+        }
+        
         article {
             background-color: rgba(200, 200, 200, 0.8);
             padding: 3px;
@@ -22,6 +121,12 @@
         
         section {
             margin: 5px;
+        }
+        
+        .left-sidebar,
+        .right-sidebar {
+            padding-left: 1rem;
+            padding-right: 1rem;
         }
         
         .g-table {
@@ -77,18 +182,21 @@
             border-radius: 8px 8px;
             padding-left: 1em;
             margin-left: 1em;
+            font-size: 1.5em;
         }
         
         .g-buttons {
-            padding: 1em;
+            padding: 0.5em;
+            /*
             border: 1px solid black;
+            */
             background-color: silver;
         }
         
         .g {}
         
         .g-case {
-            padding: 1em;
+            padding: 0.5em;
             border: 8px solid silver;
             border-radius: 8px 8px;
             margin: 5px;
@@ -104,7 +212,7 @@
         
         .g-near {
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.1rem;
             background: -webkit-repeating-linear-gradient(right, rgba(140, 140, 140, 0.7) 5px, rgba(240, 240, 240, 0.7) 5px, rgba(100, 100, 100, 0.7) 5px, rgba(80, 80, 80, 0.7) 50px);
             background: -o-repeating-linear-gradient(right, rgba(140, 140, 140, 0.7) 5px, rgba(240, 240, 240, 0.7) 5px, rgba(100, 100, 100, 0.7) 5px, rgba(80, 80, 80, 0.7) 50px);
             background: repeating-linear-gradient(-90deg, rgba(140, 140, 140, 0.7) 5px, rgba(240, 240, 240, 0.7) 5px, rgba(100, 100, 100, 0.7) 5px, rgba(80, 80, 80, 0.7) 50px);
@@ -112,7 +220,7 @@
         
         .g-far {
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-            font-size: 1.25rem;
+            font-size: 1.0rem;
             background: -webkit-repeating-linear-gradient(right, rgba(140, 140, 140, 0.7) 5px, rgba(240, 240, 240, 0.7) 5px, rgba(100, 100, 100, 0.7) 5px, rgba(80, 80, 80, 0.7) 20px);
             background: -o-repeating-linear-gradient(right, rgba(140, 140, 140, 0.7) 5px, rgba(240, 240, 240, 0.7) 5px, rgba(100, 100, 100, 0.7) 5px, rgba(80, 80, 80, 0.7) 20px);
             background: repeating-linear-gradient(-90deg, rgba(140, 140, 140, 0.7) 5px, rgba(240, 240, 240, 0.7) 5px, rgba(100, 100, 100, 0.7) 5px, rgba(80, 80, 80, 0.7) 20px);
@@ -120,7 +228,7 @@
         
         .g-identity {
             font-family: Verdana, Geneva, Tahoma, sans-serif;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             background: -webkit-repeating-radial-gradient(circle, rgba(140, 140, 140, 0.7) 5px, rgba(240, 240, 240, 0.7) 5px, rgba(100, 100, 100, 0.7) 5px, rgba(80, 80, 80, 0.7) 20px);
             background: -o-repeating-radial-gradient(circle, rgba(140, 140, 140, 0.7) 5px, rgba(240, 240, 240, 0.7) 5px, rgba(100, 100, 100, 0.7) 5px, rgba(80, 80, 80, 0.7) 20px);
             background: repeating-radial-gradient(circle, rgba(140, 140, 140, 0.7) 5px, rgba(240, 240, 240, 0.7) 5px, rgba(100, 100, 100, 0.7) 5px, rgba(80, 80, 80, 0.7) 20px);
@@ -128,23 +236,26 @@
         
         .g-m {
             color: blue;
-            background-color: rgba(230, 230, 230, 0.6);
         }
         
         .g-f {
             color: deeppink;
-            background-color: rgba(230, 230, 230, 0.6);
         }
         
         .g-note {
             background-color: rgba(230, 230, 230, 0.6);
         }
         
-        .g-checkbox {}
+        .g-checkbox-pressed {
+            /* #FCD116; */
+            background-color: rgba(252, 209, 22, 1);
+            border: 2px solid #CE1126;
+        }
         
-        .g-checkbox-m {}
-        
-        .g-checkbox-f {}
+        .g-checkbox-not-pressed {
+            background-color: rgba(230, 230, 230, 0.5);
+            border: 2px dotted darkgray;
+        }
         
         .g-sg {
             font-weight: 200;
@@ -162,28 +273,26 @@
         }
         
         .g-checkbox {
-            margin-right: 1em;
-            padding: 0.5em;
-            background-color: lightblue;
-            border: 2px solid gray;
+            margin: 0.1em;
+            padding: 0.2em;
             border-radius: 0.5em;
             text-align: center;
-            width: 2em;
             -webkit-box-shadow: 46px 32px 78px -12px rgba(0, 0, 0, 0.75);
             -moz-box-shadow: 46px 32px 78px -12px rgba(0, 0, 0, 0.75);
             box-shadow: 46px 32px 78px -12px rgba(0, 0, 0, 0.75);
         }
         
         .g-showing-group {
-            background-color: 1px solid bisque;
-            border: 2px solid darkgray;
+            background-color: #002B7F;
+            color: white;
+            vertical-align: middle;
             border-radius: 3px;
-            padding: 1em;
-            margin-right: 1em;
+            padding-left: 0.1rem;
+            margin-right: 0.2rem;
         }
         
         .g-showing-label {
-            padding-right: 1em;
+            padding-right: 1rem;
         }
         
         .g-showing {
@@ -199,7 +308,7 @@
         .g-checkbox-f {
             /* 2 */
             color: deeppink;
-            box-shadow: 1em;
+            box-shadow: 1rem;
         }
         
         .g-checkbox-sg {
@@ -211,12 +320,8 @@
             /* 4 */
             color: black;
         }
-        
-        * {
-            background-color: rgba(199, 183, 199, 0.1);
-            border-radius: 3px 3px;
-        }
     </style>
+
     <style id="toggle-g-m">
         .g-m,
         .g.g-m.g-sg,
@@ -245,6 +350,7 @@
             visibility: hidden;
         }
     </style>
+
     <script>
         function set(el, on, onClass) {
             if (on) {
@@ -264,33 +370,29 @@
             };
         }
 
-        function tog(el) {
+        function tog(el, claOn, claOff) {
             const onClass = 'g-checked';
             const on = el.classList.contains(onClass);
             set(el, !on, onClass);
+            if (claOn && claOff) {
+                if (on) {
+                    el.classList.remove(claOn);
+                    el.classList.add(claOff);
+                } else {
+                    el.classList.remove(claOff);
+                    el.classList.add(claOn);
+                }
+            }
         }
     </script>
-    <main>
-        <h1><a href="https://www.duolingo.com/skill/ro/Demonstrative-Pronouns-and-Pronominal-Adjectives/tips-and-notes">Pronumele
-                demonstrative în limba Română!</a></h1>
-        <div class="g g-buttons">
-            <span class="g g-showing-group">
 
-                <span class="g g-showing-label">Arată!</span>
-            <span id="g-m" class="g g-checkbox g-checkbox-m " onclick="tog(this);">m</span>
-            <span id="g-f" class="g g-checkbox g-checkbox-f " onclick="tog(this);">f</span>
-            <span id="g-sg" class="g g-checkbox g-checkbox-sg " onclick="tog(this);">sg</span>
-            <span id="g-pl" class="g g-checkbox g-checkbox-pl " onclick="tog(this);">pl</span>
-            </span>
-
-            <span class="g g-showing-group">
-                <span class="g g-showing-label">Arătând:</span>
-            <span class="g-m g-showing">m</span>
-            <span class="g-f g-showing">f</span>
-            <span class="g-sg g-showing">sg</span>
-            <span class="g-pl g-showing">pl</span>
-            </span>
-        </div>
+    <header id="header">
+        <span class="flag"><span class="flag-b" >&nbsp;</span><span class="flag-y">&nbsp;</span><span class="flag-r">&nbsp;</span> </span>
+        <span class="title"><a class="title" href="https://www.duolingo.com/skill/ro/Demonstrative-Pronouns-and-Pronominal-Adjectives/tips-and-notes">Pronumele
+                demonstrative în limba Română</a></span>
+    </header>
+    <div id="left" class="left-sidebar" contenteditable></div>
+    <main id="main" contenteditable>
         <div class="g g-case g-case-nom-acc">
             <fieldset>
                 <legend>Caz nominativ/acuzativ - acest*a/acel*a - ce*lalt*</legend>
@@ -419,7 +521,39 @@
             </fieldset>
         </div>
     </main>
-
+    <div id="right" class="right-sidebar"></div>
+    <footer id="footer" class="g g-buttons">
+        <span class="g g-showing-group">
+                <span class="g g-showing-label">Arată!</span>
+        <span id="g-m" class="g g-checkbox g-checkbox-m " onclick="tog(this, 'g-checkbox-pressed', 'g-checkbox-not-pressed');">m</span>
+        <span id="g-f" class="g g-checkbox g-checkbox-f " onclick="tog(this, 'g-checkbox-pressed', 'g-checkbox-not-pressed');">f</span>
+        <span id="g-sg" class="g g-checkbox g-checkbox-sg " onclick="tog(this, 'g-checkbox-pressed', 'g-checkbox-not-pressed');">sg</span>
+        <span id="g-pl" class="g g-checkbox g-checkbox-pl " onclick="tog(this, 'g-checkbox-pressed', 'g-checkbox-not-pressed');">pl</span>
+        </span>
+    </footer>
+    <script>
+        class Widget {
+            addTo(id) {
+                if (this.el) {
+                    document.getElementById(id).appendChild(this.el);
+                }
+            }
+        }
+        class Button extends Widget {
+            constructor(id, name) {
+                this.el = document.createElement("div");
+                this.el.setAttribute("id");
+                this.el.set
+            }
+        }
+        /* hack */
+        const claOn = "g-checkbox-pressed";
+        const claOff = "g-checkbox-not-pressed";
+        for (let id of["g-m", "g-f", "g-sg", "g-pl"]) {
+            const el = document.getElementById(id);
+            tog(el, claOn, claOff);
+        }
+    </script>
 </body>
 
 </html>
