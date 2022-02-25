@@ -292,7 +292,8 @@
         }
         
         .g-showing-label {
-            padding-right: 1rem;
+            padding: 0.6rem;
+            vertical-align: middle;
         }
         
         .g-showing {
@@ -390,6 +391,13 @@
         <span class="flag"><span class="flag-b" >&nbsp;</span><span class="flag-y">&nbsp;</span><span class="flag-r">&nbsp;</span> </span>
         <span class="title"><a class="title" href="https://www.duolingo.com/skill/ro/Demonstrative-Pronouns-and-Pronominal-Adjectives/tips-and-notes">Pronumele
                 demonstrative în limba Română</a></span>
+        <div class="g g-buttons g-showing-group">
+            <div class="g g-showing-label">Arată!</div>
+            <span id="g-m" class="g g-checkbox g-checkbox-m " onclick="tog(this, 'g-checkbox-pressed', 'g-checkbox-not-pressed');">m</span>
+            <span id="g-f" class="g g-checkbox g-checkbox-f " onclick="tog(this, 'g-checkbox-pressed', 'g-checkbox-not-pressed');">f</span>
+            <span id="g-sg" class="g g-checkbox g-checkbox-sg " onclick="tog(this, 'g-checkbox-pressed', 'g-checkbox-not-pressed');">sg</span>
+            <span id="g-pl" class="g g-checkbox g-checkbox-pl " onclick="tog(this, 'g-checkbox-pressed', 'g-checkbox-not-pressed');">pl</span>
+        </div>
     </header>
     <div id="left" class="left-sidebar" contenteditable></div>
     <main id="main" contenteditable>
@@ -399,10 +407,10 @@
                 <div>
                     <article class="g g-near">
                         <aside>
-                            <h2>aproape <small>(<span class="g g-m g-sg">sta</span><span class="g g-m">,</span><span
-                                        class="g g-m g-pl">știa</span>;<span class="g g-f"><span
-                                            class="g g-sg">asta</span><span class="g g-f">,</span><span
-                                            class="g g-pl">stea</span></span>):ace*st*a</small></h2>
+                            <h2>aproape <small>(<span class="g g-m g-sg g-note">sta</span><span class="g g-m">,</span><span
+                                        class="g g-m g-pl g-note">știa</span>;<span class="g g-f"><span
+                                            class="g g-sg g-note">asta</span><span class="g g-f">,</span><span
+                                            class="g g-pl g-note">stea</span></span>):ace*st*a</small></h2>
                         </aside>
                         <section>
                             <div class="g-table">
@@ -419,10 +427,10 @@
                     </article>
                     <article class="g g-far">
                         <aside>
-                            <h2>departe <small>(<span class="g g-m"><span class="g g-sg">la</span>,<span
-                                            class="g g-pl">ia</span></span>;<span class="g g-f"><span
-                                            class="g g-sg">ea</span>,<span
-                                            class="g g-pl">lea</span></span>):acel*a/cel*lalt*</small></h2>
+                            <h2>departe <small>(<span class="g g-m"><span class="g g-sg g-note">la</span>,<span
+                                            class="g g-pl g-note">ia</span></span>;<span class="g g-f"><span
+                                            class="g g-sg g-note">ea</span>,<span
+                                            class="g g-pl g-note">lea</span></span>):acel*a/cel*lalt*</small></h2>
                         </aside>
                         <section>
                             <div class="g-table">
@@ -463,9 +471,9 @@
                 <div>
                     <article class="g g-near">
                         <aside>
-                            <h2>aproape <small>(<span class="g g-m g-sg">stuia</span><span class="g g-m">,</span><span
-                                        class="g g-m g-pl">stora</span>;<span class="g g-f g-sg">steia</span><span
-                                        class="g g-f">,</span><span class="g g-f g-pl">stora</span>):ace*a</small></h2>
+                            <h2>aproape <small>(<span class="g g-m g-sg g-note">stuia</span><span class="g g-m g-note">,</span><span
+                                        class="g g-m g-pl g-note">stora</span>;<span class="g g-f g-sg g-note">steia</span><span
+                                        class="g g-f g-note">,</span><span class="g g-f g-pl g-note">stora</span>):ace*a</small></h2>
                         </aside>
                         <section>
                             <div class="g-table">
@@ -482,10 +490,10 @@
                     </article>
                     <article class="g g-far">
                         <aside>
-                            <h2>departe <small>(<span class="g g-m g-sg">luia</span><span class="g g-m">,</span><span
-                                        class="g g-m g-pl">lora</span>;<span class="g g-f g-sg">leia</span><span
+                            <h2>departe <small>(<span class="g g-m g-sg g-note">luia</span><span class="g g-m">,</span><span
+                                        class="g g-m g-pl g-note">lora</span>;<span class="g g-f g-sg g-note">leia</span><span
                                         class="g g-f">,</span><span
-                                        class="g g-f g-pl">lora</span>):ace*a/ce*lalt*</small></h2>
+                                        class="g g-f g-pl g-note">lora</span>):ace*a/ce*lalt*</small></h2>
                         </aside>
                         <section>
                             <div class="g-table">
@@ -523,13 +531,6 @@
     </main>
     <div id="right" class="right-sidebar"></div>
     <footer id="footer" class="g g-buttons">
-        <span class="g g-showing-group">
-                <span class="g g-showing-label">Arată!</span>
-        <span id="g-m" class="g g-checkbox g-checkbox-m " onclick="tog(this, 'g-checkbox-pressed', 'g-checkbox-not-pressed');">m</span>
-        <span id="g-f" class="g g-checkbox g-checkbox-f " onclick="tog(this, 'g-checkbox-pressed', 'g-checkbox-not-pressed');">f</span>
-        <span id="g-sg" class="g g-checkbox g-checkbox-sg " onclick="tog(this, 'g-checkbox-pressed', 'g-checkbox-not-pressed');">sg</span>
-        <span id="g-pl" class="g g-checkbox g-checkbox-pl " onclick="tog(this, 'g-checkbox-pressed', 'g-checkbox-not-pressed');">pl</span>
-        </span>
     </footer>
     <script>
         class Widget {
