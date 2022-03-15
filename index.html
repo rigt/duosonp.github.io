@@ -12,6 +12,7 @@
             display: grid;
             height: 100vh;
             grid-template: auto 1fr auto / auto 1fr auto;
+            font-family: monospace;
         }
         
         .flag {
@@ -62,8 +63,6 @@
             text-shadow: #002B7F;
             text-align: center;
             font-weight: bolder;
-            font-style: italic;
-            font-family: 'Times New Roman', Times, serif;
         }
         
         header {
@@ -84,8 +83,6 @@
         
         main {
             grid-column: 2 / 3;
-            font-family: monospace;
-            font-style: italic;
             font-size: small;
             overflow: scroll;
         }
@@ -104,19 +101,18 @@
         }
         
         body {
-            font-family: 'Times New Roman', Times, serif;
             font-size: 1.5em;
             box-sizing: border-box;
             margin: 0px;
         }
         
         article {
-            background-color: rgba(200, 200, 200, 0.8);
+            background-color: white;
             padding: 3px;
             padding-right: 3px;
             margin: 3px;
-            border: 8px solid rgba(200, 200, 200, 0.3);
-            border-radius: 8px 8px;
+            border: 2px solid rgba(200, 200, 200, 0.3);
+            border-radius: 2px 2px;
         }
         
         section {
@@ -130,20 +126,20 @@
         }
         
         .g-table {
-            border-radius: 5px;
-            border: 10px solid black;
+            border-radius: 2px;
+            border: 2px solid black;
         }
         
         .g-td {
-            background-color: rgba(230, 230, 230, 0.6);
-            padding: 5px;
-            border: 2px dashed black;
+            background-color: #f6ff00;
+            padding: 2px;
+            border: 2px solid black;
             display: inline;
         }
         
         .g-tr {
             display: block;
-            margin: 5px;
+            margin: 2px;
             /* border: 2px dotted lime; */
         }
         
@@ -197,9 +193,9 @@
         
         .g-case {
             padding: 0.5em;
-            border: 8px solid silver;
-            border-radius: 8px 8px;
-            margin: 5px;
+            border: 2px solid silver;
+            border-radius: 2px 2px;
+            margin: 2px;
         }
         
         .g-case-nom-acc {
@@ -211,27 +207,31 @@
         }
         
         .g-near {
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             font-size: 1.1rem;
+            background: white;
+            /*
             background: -webkit-repeating-linear-gradient(right, rgba(140, 140, 140, 0.7) 5px, rgba(240, 240, 240, 0.7) 5px, rgba(100, 100, 100, 0.7) 5px, rgba(80, 80, 80, 0.7) 50px);
             background: -o-repeating-linear-gradient(right, rgba(140, 140, 140, 0.7) 5px, rgba(240, 240, 240, 0.7) 5px, rgba(100, 100, 100, 0.7) 5px, rgba(80, 80, 80, 0.7) 50px);
             background: repeating-linear-gradient(-90deg, rgba(140, 140, 140, 0.7) 5px, rgba(240, 240, 240, 0.7) 5px, rgba(100, 100, 100, 0.7) 5px, rgba(80, 80, 80, 0.7) 50px);
+            */
         }
         
         .g-far {
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             font-size: 1.0rem;
+            /*
             background: -webkit-repeating-linear-gradient(right, rgba(140, 140, 140, 0.7) 5px, rgba(240, 240, 240, 0.7) 5px, rgba(100, 100, 100, 0.7) 5px, rgba(80, 80, 80, 0.7) 20px);
             background: -o-repeating-linear-gradient(right, rgba(140, 140, 140, 0.7) 5px, rgba(240, 240, 240, 0.7) 5px, rgba(100, 100, 100, 0.7) 5px, rgba(80, 80, 80, 0.7) 20px);
             background: repeating-linear-gradient(-90deg, rgba(140, 140, 140, 0.7) 5px, rgba(240, 240, 240, 0.7) 5px, rgba(100, 100, 100, 0.7) 5px, rgba(80, 80, 80, 0.7) 20px);
+            */
         }
         
         .g-identity {
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
             font-size: 1.2rem;
+            /*
             background: -webkit-repeating-radial-gradient(circle, rgba(140, 140, 140, 0.7) 5px, rgba(240, 240, 240, 0.7) 5px, rgba(100, 100, 100, 0.7) 5px, rgba(80, 80, 80, 0.7) 20px);
             background: -o-repeating-radial-gradient(circle, rgba(140, 140, 140, 0.7) 5px, rgba(240, 240, 240, 0.7) 5px, rgba(100, 100, 100, 0.7) 5px, rgba(80, 80, 80, 0.7) 20px);
             background: repeating-radial-gradient(circle, rgba(140, 140, 140, 0.7) 5px, rgba(240, 240, 240, 0.7) 5px, rgba(100, 100, 100, 0.7) 5px, rgba(80, 80, 80, 0.7) 20px);
+            */
         }
         
         .g-m {
@@ -243,7 +243,9 @@
         }
         
         .g-note {
-            background-color: rgba(230, 230, 230, 0.6);
+            background-color: white;
+            color: rgba(0, 0, 0, 0.75);
+            font-weight: bold;
         }
         
         .g-checkbox-pressed {
@@ -253,23 +255,28 @@
         }
         
         .g-checkbox-not-pressed {
-            background-color: rgba(230, 230, 230, 0.5);
+            background-color: white;
             border: 2px dotted darkgray;
         }
         
         .g-sg {
             font-weight: 200;
+            background-color: rgba(252, 209, 22, 1);
+            color: rgba(0, 0, 0, 0.75);
+            font-weight: bold;
         }
         
         .g-pl {
             font-weight: 800;
-            font-style: oblique;
+            background-color: #f6ff00;
         }
         
         .g-diff {
             text-shadow: 1px 1px rgba(50, 50, 50, 0.7);
-            background-color: rgba(200, 200, 200, 0.7);
             border-radius: 3px;
+            background-color: lightgray;
+            color: rgba(0, 0, 0, 0.75);
+            font-weight: bold;
         }
         
         .g-checkbox {
