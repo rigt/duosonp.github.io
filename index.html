@@ -321,6 +321,16 @@
             /* 4 */
             color: black;
         }
+        
+        .g-checkbox-linguee {
+            margin-left: 2rem;
+            color: darkmagenta;
+        }
+        
+        .g-checkbox-reverso {
+            margin-left: 2rem;
+            color: darkred
+        }
     </style>
 
     <style id="toggle-g-m">
@@ -353,7 +363,6 @@
     </style>
 
     <script>
-
         function set(el, on, onClass) {
             if (on) {
                 el.classList.add(onClass);
@@ -386,6 +395,62 @@
                 }
             }
         }
+
+        function reversoUrl(word) {
+            const first = word.split("/")[0];
+            return `https://context.reverso.net/translation/romanian-english/${first}`;
+        }
+
+        function lingueeUrl(word) {
+            const first = word.split("/")[0];
+            return `https://www.linguee.com/english-romanian/search?query=${first}`;
+        }
+
+        var urlButton;
+        var urlFunction;
+
+        function use(el, fn) {
+            if (urlButton) {
+                urlButton.classList.remove("g-checkbox-pressed");
+                urlButton.classList.add("g-checkbox-not-pressed");
+            }
+            urlButton = el;
+            urlButton.classList.add("g-checkbox-pressed");
+            urlButton.classList.remove("g-checkbox-not-pressed");
+            urlFunction = fn;
+        }
+
+        function urlOf(word) {
+            return urlFunction ? urlFunction(word) : null;
+        }
+
+        function initWords() {
+            document.getElementById("linguee").classList.add("g-checkbox-not-pressed");
+            document.getElementById("reverso").classList.add("g-checkbox-not-pressed");
+            const wordElements = document.getElementsByClassName("g-td");
+            let text = "";
+            for (let i = 0; i < wordElements.length; i++) {
+                const wordElement = wordElements[i];
+                text += ("" + i + " " + wordElement.innerText + "\n");
+            }
+            for (let i = 0; i < wordElements.length; i++) {
+                const wordElement = wordElements[i];
+                const parentElement = wordElement.parentElement;
+                const word = wordElement.innerText;
+                const a = document.createElement("span");
+                a.id = "word_" + i;
+                parentElement.insertBefore(a, wordElement);
+                parentElement.removeChild(wordElement);
+                a.appendChild(wordElement);
+                a.onclick = (ev) => {
+                    const url = urlOf(word);
+                    if (url) {
+                        window.open(url, word, "popup");
+                    }
+                }
+                text += ("" + i + " " + a.onclick + "\n");
+            }
+        }
     </script>
 
     <header id="header">
@@ -398,6 +463,8 @@
             <span id="g-f" class="g g-checkbox g-checkbox-f " onclick="tog(this, 'g-checkbox-pressed', 'g-checkbox-not-pressed');">f</span>
             <span id="g-sg" class="g g-checkbox g-checkbox-sg " onclick="tog(this, 'g-checkbox-pressed', 'g-checkbox-not-pressed');">sg</span>
             <span id="g-pl" class="g g-checkbox g-checkbox-pl " onclick="tog(this, 'g-checkbox-pressed', 'g-checkbox-not-pressed');">pl</span>
+            <span id="linguee" class="g g-checkbox g-checkbox-linguee" name="linguee" onclick="use(this, lingueeUrl)">Linguee</span>
+            <span id="reverso" class="g g-checkbox g-checkbox-reverso" name="reverso" onclick="use(this, reversoUrl)">Reverso</span>
         </div>
     </header>
     <div id="left" class="left-sidebar" contenteditable></div>
@@ -555,6 +622,7 @@
             const el = document.getElementById(id);
             tog(el, claOn, claOff);
         }
+        initWords();
     </script>
 </body>
 
