@@ -313,6 +313,7 @@
         
         .g-checkbox-sg {
             /* 3 */
+            margin-left: 2rem;
             color: black;
         }
         
@@ -331,6 +332,11 @@
         .g-checkbox-reverso {
             margin-left: 2rem;
             color: darkred
+        }
+        
+        .g-checkbox-forvo {
+            margin-left: 2rem;
+            color: darkblue;
         }
     </style>
 
@@ -406,6 +412,11 @@
             const first = word.split("/")[0];
             return `https://www.linguee.com/english-romanian/search?query=${first}`;
         }
+        
+        function forvoUrl(word) {
+            const first = word.split("/")[0];
+            return `https://forvo.com/word/${first}/#ro`;
+        }
 
         var urlButton;
         var urlFunction;
@@ -428,6 +439,7 @@
         function initWords() {
             document.getElementById("linguee").classList.add("g-checkbox-not-pressed");
             document.getElementById("reverso").classList.add("g-checkbox-not-pressed");
+            document.getElementById("forvo").classList.add("g-checkbox-not-pressed");
             const wordElements = document.getElementsByClassName("g-td");
             let text = "";
             for (let i = 0; i < wordElements.length; i++) {
@@ -466,6 +478,7 @@
             <span id="g-pl" class="g g-checkbox g-checkbox-pl " onclick="tog(this, 'g-checkbox-pressed', 'g-checkbox-not-pressed');">pl</span>
             <span id="linguee" class="g g-checkbox g-checkbox-linguee" name="linguee" onclick="use(this, lingueeUrl)">Linguee</span>
             <span id="reverso" class="g g-checkbox g-checkbox-reverso" name="reverso" onclick="use(this, reversoUrl)">Reverso</span>
+            <span id="forvo" class="g g-checkbox g-checkbox-forvo" name="forvo" onclick="use(this, forvoUrl)">Forvo</span>
         </div>
     </header>
     <div id="left" class="left-sidebar"></div>
