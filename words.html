@@ -19,8 +19,9 @@
                         return response.blob();
                     })
                     .then((response) => {
+                        window.alert(response);
                         const ta = document.getElementById("response");
-                        ta.innerHTML = URL.createObjectURL(response);
+                        ta.innerHTML = `${response}`;
                     })
             }
 
@@ -36,7 +37,7 @@
     </div>
     <div>
         GET
-        <button name="get" name="Get" onclick="get()">Get</button>
+        <input type="button" name="get" name="Get" value="Get" onclick="get()">Get</button>
     </div>
     <div>
         RESPONSE
