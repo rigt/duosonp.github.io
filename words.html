@@ -30,14 +30,17 @@
             const key = document.getElementById("key").value;
             const words = document.getElementById("words").innerText;
             window.alert(`Get words ${words} using key ${key}`);
-            ta.innerHTML = "";
+            ta.innerHTML = "Getting...";
+            window.alert("Abort to get...")
             for (let word of words.split(/\s+/)) {
                 const url = `https://api.forvo.com/key/${key}/actions/word-pronunciation/format/json/word/${word}`;
+                window.alert("Fetch " + url);
                 fetch(url)
                     .then((response) => {
                         if (!response.ok) {
                             throw new Error(`HTTP error! Status: ${response.status}`);
                         }
+                        window.alert("got response");
                         return response.json();
                     })
                     .then((response) => {
@@ -51,8 +54,12 @@
             }
         }
         window.alert("Call get on button click");
-        document.getElementById("get").onclick = ev => get();
-        window.alert("Ready");
+        try {
+            document.getElementById("get").onclick = ev => get();
+            window.alert("Ready");
+        } catch (err) {
+            window.alert(err);
+        }
     </script>
 </body>
 
