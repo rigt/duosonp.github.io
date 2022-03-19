@@ -8,6 +8,7 @@
         function get() {
             const key = document.getElementById("key").innerText;
             const words = document.getElementById("words").innerText;
+            window.alert(`Get words ${words} using key ${key}`);
             ta.innerHTML = "";
             for (let word of words.split(/\s+/)) {
                 const url = `https://api.forvo.com/key/${key}/actions/word-pronunciation/format/json/word/${word}`;
