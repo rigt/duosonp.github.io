@@ -353,6 +353,27 @@
     </style>
 
     <script>
+        const groups = [
+            [
+                "g-m",
+                "g-f"
+            ],
+            [
+                "g-sg",
+                "g-pl"
+            ]
+        ]
+
+        function findGroup(el) {
+            for (let group of groups) {
+                if (group.indexOf(el.id)) {
+                    return group.map(id => document.getElementById(id));
+                }
+            }
+            return null;
+        }
+
+        function 
 
         function set(el, on, onClass) {
             if (on) {
