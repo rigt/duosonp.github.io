@@ -28,9 +28,14 @@
                         window.alert(err);
                     })
             }
-
         }
+        document.getElementById("get").onclick = ev => get();
     </script>
+    <style>
+        div {
+            border: 1px solid black;
+        }
+    </style>
     <div>
         KEY
         <input id="key" name="key" />
@@ -41,7 +46,7 @@
     </div>
     <div>
         GET
-        <input type="button" name="get" name="Get" value="Get" click="get()"></input>
+        <input type="button" name="get" name="Get" value="Get"></input>
     </div>
     <div>
         RESPONSE
