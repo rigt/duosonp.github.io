@@ -29,6 +29,8 @@
         function get() {
             const key = document.getElementById("key").value;
             const words = document.getElementById("words").innerText;
+            const ta = document.getElementById("response");
+
             window.alert(`Get words ${words} using key ${key}`);
             ta.innerHTML = "Getting...";
             window.alert("Abort to get...")
@@ -45,7 +47,6 @@
                     })
                     .then((response) => {
                         window.alert(response);
-                        const ta = document.getElementById("response");
                         ta.innerHTML = `${response}`;
                     })
                     .catch((err) => {
