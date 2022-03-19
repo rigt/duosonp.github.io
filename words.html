@@ -16,12 +16,15 @@
                         if (!response.ok) {
                             throw new Error(`HTTP error! Status: ${response.status}`);
                         }
-                        return response.blob();
+                        return response.json();
                     })
                     .then((response) => {
                         window.alert(response);
                         const ta = document.getElementById("response");
                         ta.innerHTML = `${response}`;
+                    })
+                    .catch((err) => {
+                        window.alert(err);
                     })
             }
 
