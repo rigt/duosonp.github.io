@@ -23,7 +23,7 @@
     </div>
     <div>
         <label for="words">The WORDS</label>
-        <textarea id="words" width="100%" height="100%">word</textarea>
+        <textarea id="words" width="100%" height="100%">drum</textarea>
     </div>
     <div>
         <label for="get">GET BUTTON</label>
@@ -42,8 +42,8 @@
             window.alert(`Get words "${words}" using key ${key} ...`);
             window.alert(`... jsontextarea ${jta.innerHTML}`);
             jta.innerHTML = "Getting...";
-            window.alert("Abort to get...")
-            const url = `https://api.forvo.com/key/${key}/actions/word-pronunciation/format/json/word/${word}/language/ro`;
+//            const url = `https://api.forvo.com/key/${key}/actions/word-pronunciation/format/json/word/${word}/language/ro`;
+            const url = `https://api.forvo.com/key/${key}/actions/word-pronunciation/format/json/word/drum/language/ro`;
             window.alert("Fetch " + url);
             fetch(url)
                 .then((response) => {
