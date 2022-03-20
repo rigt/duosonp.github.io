@@ -15,7 +15,7 @@
     </div>
     <div>
         WORDS
-        <textarea id="words" width="100%" height="100%"></textarea>
+        <textarea id="words" width="100%" height="100%">word</textarea>
     </div>
     <div>
         GET
@@ -23,16 +23,16 @@
     </div>
     <div>
         RESPONSE
-        <textarea id="reponse" width="100%" height="100%"></textarea>
+        <textarea id="jsontextarea" width="100%" height="100%">nothing</textarea>
     </div>
     <script>
         function get() {
             const key = document.getElementById("key").value;
             const words = document.getElementById("words").innerText;
-            const ta = document.getElementById("response");
+            const jta = document.getElementById("jsontextarea");
 
-            window.alert(`Get words ${words} using key ${key}`);
-            ta.innerHTML = "Getting...";
+            window.alert(`Get words ${words} using key ${key} ... jsontextarea ${jta.innerHTML}`);
+            jta.innerHTML = "Getting...";
             window.alert("Abort to get...")
             for (let word of words.split(/\s+/)) {
                 const url = `https://api.forvo.com/key/${key}/actions/word-pronunciation/format/json/word/${word}`;
