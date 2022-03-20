@@ -10,19 +10,19 @@
         }
     </style>
     <div>
-        KEY
+        <label for="key">KEY</label>
         <input id="key" name="key" />
     </div>
     <div>
-        WORDS
+        <label for="words">WORDS</label>
         <textarea id="words" width="100%" height="100%">word</textarea>
     </div>
     <div>
-        GET
+        <label for="get">GET</label>
         <input type="button" id="get" name="Get" value="Get"></input>
     </div>
     <div>
-        RESPONSE
+        <label for="jsontextarea">RESPONS</label>
         <textarea id="jsontextarea" width="100%" height="100%">nothing</textarea>
     </div>
     <script>
@@ -31,7 +31,8 @@
             const words = document.getElementById("words").innerText;
             const jta = document.getElementById("jsontextarea");
 
-            window.alert(`Get words ${words} using key ${key} ... jsontextarea ${jta.innerHTML}`);
+            window.alert(`Get words ${words} using key ${key} ...`);
+            window.alert(`... jsontextarea ${jta.innerHTML}`);
             jta.innerHTML = "Getting...";
             window.alert("Abort to get...")
             for (let word of words.split(/\s+/)) {
