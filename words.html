@@ -6,23 +6,30 @@
 <body>
     <style>
         div {
-            border: 1px solid black;
+            border: 1px solid gray;
+            margin: 1rem;
+            padding: 1rem;
+        }
+        body {
+            background-color: cornsilk;
+            font-size: large;
+            font-family: monospace;
         }
     </style>
     <div>
-        <label for="key">KEY</label>
+        <label for="key">The KEY</label>
         <input id="key" name="key" />
     </div>
     <div>
-        <label for="words">WORDS</label>
+        <label for="words">The WORDS</label>
         <textarea id="words" width="100%" height="100%">word</textarea>
     </div>
     <div>
-        <label for="get">GET</label>
+        <label for="get">GET BUTTON</label>
         <input type="button" id="get" name="Get" value="Get"></input>
     </div>
     <div>
-        <label for="jsontextarea">RESPONS</label>
+        <label for="jsontextarea">JSON RESPONSE</label>
         <textarea id="jsontextarea" width="100%" height="100%">nothing</textarea>
     </div>
     <script>
