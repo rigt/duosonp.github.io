@@ -220,19 +220,6 @@
             background-color: beige;
         }
         
-        .g-near {
-            font-size: 1.3rem;
-            background: white;
-        }
-        
-        .g-far {
-            font-size: 1.0rem;
-        }
-        
-        .g-identity {
-            font-size: 1.0rem;
-        }
-        
         .g-m {
             color: blue;
         }
@@ -267,6 +254,19 @@
             font-weight: bold;
             border: 1px solid darkgray;
             border-radius: 3px;
+        }
+        
+        .g-near {
+            font-size: 1.3rem;
+            background: white;
+        }
+        
+        .g-far {
+            font-size: 1.0rem;
+        }
+        
+        .g-identity {
+            font-size: 1.0rem;
         }
         
         .g-checkbox {
@@ -327,14 +327,24 @@
         .g-checkbox-near {
             /* 5 */
             margin-left: 2rem;
-            color: black;
+            color: lightgray;
+            background-color: rgb(252, 209, 22);
         }
         
         .g-checkbox-far {
             /* 6 */
-            color: black;
+            color: lightgray;
             font-style: italic;
+            background-color: rgb(252, 209, 22);
         }
+        
+        .g-checkbox-identity {
+            /* 7 */
+            color: lightgray;
+            font-style: italic;
+            background-color: rgb(252, 209, 22);
+        }
+
         .g-checkbox-linguee {
             margin-left: 2rem;
             color: darkmagenta;
@@ -499,6 +509,7 @@
             <span id="g-pl" class="g g-checkbox g-checkbox-pl " onclick="tog(this, 'g-checkbox-pressed', 'g-checkbox-not-pressed');">pl</span>
             <span id="g-near" class="g g-checkbox g-checkbox-near " onclick="tog(this, 'g-checkbox-pressed', 'g-checkbox-not-pressed');">near</span>
             <span id="g-far" class="g g-checkbox g-checkbox-far " onclick="tog(this, 'g-checkbox-pressed', 'g-checkbox-not-pressed');">far</span>
+            <span id="g-identity" class="g g-checkbox g-checkbox-identity " onclick="tog(this, 'g-checkbox-pressed', 'g-checkbox-not-pressed');">identity</span>
             <span id="linguee" class="g g-checkbox g-checkbox-linguee" name="linguee" onclick="use(this, lingueeUrl)">Linguee</span>
             <span id="reverso" class="g g-checkbox g-checkbox-reverso" name="reverso" onclick="use(this, reversoUrl)">Reverso</span>
             <span id="forvo" class="g g-checkbox g-checkbox-forvo" name="forvo" onclick="use(this, forvoUrl)">Forvo</span>
