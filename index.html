@@ -327,21 +327,19 @@
         .g-checkbox-near {
             /* 5 */
             margin-left: 2rem;
-            color: lightgray;
+            color: black;
             background-color: rgb(252, 209, 22);
         }
         
         .g-checkbox-far {
             /* 6 */
-            color: lightgray;
-            font-style: italic;
+            color: black;
             background-color: rgb(252, 209, 22);
         }
         
         .g-checkbox-identity {
             /* 7 */
-            color: lightgray;
-            font-style: italic;
+            color: black;
             background-color: rgb(252, 209, 22);
         }
 
@@ -652,7 +650,7 @@
         /* hack */
         const claOn = "g-checkbox-pressed";
         const claOff = "g-checkbox-not-pressed";
-        for (let id of["g-m", "g-f", "g-sg", "g-pl"]) {
+        for (let id of["g-m", "g-f", "g-sg", "g-pl", "g-near", "g-far", "g-identity"]) {
             const el = document.getElementById(id);
             tog(el, claOn, claOff);
         }
