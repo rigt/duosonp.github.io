@@ -22,8 +22,8 @@
         <input id="key" name="key" />
     </div>
     <div>
-        <label for="words">The WORDS</label>
-        <textarea id="words" width="100%" height="100%">drum</textarea>
+        <label for="word">The WORDS</label>
+        <input type="text" id="word" width="100%" height="100%" value="drum">drum</input>
     </div>
     <div>
         <label for="get">GET BUTTON</label>
@@ -36,10 +36,10 @@
     <script>
         function get() {
             const key = document.getElementById("key").value;
-            const word = document.getElementById("words").innerText;
+            const word = document.getElementById("word").innerText;
             const jta = document.getElementById("jsontextarea");
 
-            window.alert(`Get words "${words}" using key ${key} ...`);
+            window.alert(`Get word "${word}" using key ${key} ...`);
             window.alert(`... jsontextarea ${jta.innerHTML}`);
             jta.innerHTML = "Getting...";
 //            const url = `https://api.forvo.com/key/${key}/actions/word-pronunciation/format/json/word/${word}/language/ro`;
@@ -61,7 +61,7 @@
                     window.alert(err);
                 });
         }
-        window.alert("Call get on button click");
+        window.alert("Initialize...");
         try {
             document.getElementById("get").onclick = ev => get();
             window.alert("Ready");
