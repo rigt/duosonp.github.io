@@ -45,7 +45,7 @@
 //            const url = `https://api.forvo.com/key/${key}/actions/word-pronunciation/format/json/word/${word}/language/ro`;
             const url = `https://api.forvo.com/key/${key}/actions/word-pronunciation/format/json/word/drum/language/ro`;
             window.alert("Fetch " + url);
-            fetch(url, { method: 'POST', mode: 'cors',})
+            fetch(url, { method: 'POST', mode: 'no-cors',})
                 .then((response) => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
