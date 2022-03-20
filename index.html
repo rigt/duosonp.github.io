@@ -324,6 +324,17 @@
             background-color: #f6ff00;
         }
         
+        .g-checkbox-near {
+            /* 5 */
+            margin-left: 2rem;
+            color: black;
+        }
+        
+        .g-checkbox-far {
+            /* 6 */
+            color: black;
+            font-style: italic;
+        }
         .g-checkbox-linguee {
             margin-left: 2rem;
             color: darkmagenta;
@@ -365,6 +376,16 @@
         .g-pl,
         .g.g-m.g-pl,
         .g.g-f.g-pl {
+            visibility: hidden;
+        }
+    </style>
+    <style id="toggle-g-near">
+        .g-near {
+            visibility: hidden;
+        }
+    </style>
+    <style id="toggle-g-far">
+        .g-far {
             visibility: hidden;
         }
     </style>
@@ -476,6 +497,8 @@
             <span id="g-f" class="g g-checkbox g-checkbox-f " onclick="tog(this, 'g-checkbox-pressed', 'g-checkbox-not-pressed');">f</span>
             <span id="g-sg" class="g g-checkbox g-checkbox-sg " onclick="tog(this, 'g-checkbox-pressed', 'g-checkbox-not-pressed');">sg</span>
             <span id="g-pl" class="g g-checkbox g-checkbox-pl " onclick="tog(this, 'g-checkbox-pressed', 'g-checkbox-not-pressed');">pl</span>
+            <span id="g-near" class="g g-checkbox g-checkbox-near " onclick="tog(this, 'g-checkbox-pressed', 'g-checkbox-not-pressed');">sg</span>
+            <span id="g-far" class="g g-checkbox g-checkbox-far " onclick="tog(this, 'g-checkbox-pressed', 'g-checkbox-not-pressed');">pl</span>
             <span id="linguee" class="g g-checkbox g-checkbox-linguee" name="linguee" onclick="use(this, lingueeUrl)">Linguee</span>
             <span id="reverso" class="g g-checkbox g-checkbox-reverso" name="reverso" onclick="use(this, reversoUrl)">Reverso</span>
             <span id="forvo" class="g g-checkbox g-checkbox-forvo" name="forvo" onclick="use(this, forvoUrl)">Forvo</span>
