@@ -10,6 +10,7 @@
             margin: 1rem;
             padding: 1rem;
         }
+
         body {
             background-color: cornsilk;
             font-size: large;
@@ -35,32 +36,30 @@
     <script>
         function get() {
             const key = document.getElementById("key").value;
-            const words = document.getElementById("words").innerText;
+            const word = document.getElementById("words").innerText;
             const jta = document.getElementById("jsontextarea");
 
-            window.alert(`Get words ${words} using key ${key} ...`);
+            window.alert(`Get words "${words}" using key ${key} ...`);
             window.alert(`... jsontextarea ${jta.innerHTML}`);
             jta.innerHTML = "Getting...";
             window.alert("Abort to get...")
-            for (let word of words.split(/\s+/)) {
-                const url = `https://api.forvo.com/key/${key}/actions/word-pronunciation/format/json/word/${word}`;
-                window.alert("Fetch " + url);
-                fetch(url)
-                    .then((response) => {
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! Status: ${response.status}`);
-                        }
-                        window.alert("got response");
-                        return response.json();
-                    })
-                    .then((response) => {
-                        window.alert(response);
-                        ta.innerHTML = `${response}`;
-                    })
-                    .catch((err) => {
-                        window.alert(err);
-                    })
-            }
+            const url = `https://api.forvo.com/key/${key}/actions/word-pronunciation/format/json/word/${word}/language/ro`;
+            window.alert("Fetch " + url);
+            fetch(url)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    window.alert("got response");
+                    return response.json();
+                })
+                .then((response) => {
+                    window.alert(response);
+                    jta.innerHTML = `${response}`;
+                })
+                .catch((err) => {
+                    window.alert(err);
+                });
         }
         window.alert("Call get on button click");
         try {
