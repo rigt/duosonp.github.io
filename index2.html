@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta lang="ro" />
+    <title>Pronumele demonstrative în limba Română!</title>
+</head>
+
+<body>
+    <style>
+        body {
+            display: grid;
+            height: 100vh;
+            grid-template: auto 1fr auto / auto 1fr auto;
+            font-family: monospace;
+        }
+        
+        .flag {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 100%;
+            width: 50px;
+            height: 33px;
+            left: 5px;
+            z-index: 1;
+            position: absolute;
+            border-radius: 0px;
+        }
+        
+        .flag-b {
+            background-color: #002B7F;
+            border-radius: 0px;
+            width: 16px;
+            height: 33px;
+        }
+        
+        .flag-y {
+            background-color: #FCD116;
+            border-radius: 0px;
+            width: 16px;
+            height: 33px;
+        }
+        
+        .flag-r {
+            background-color: #CE1126;
+            border-radius: 0px;
+            width: 16px;
+            height: 33px;
+        }
+        
+        .title {
+            z-index: 2;
+            text-align: center;
+            position: relative;
+            width: 80%;
+            height: 1.8em;
+            display: inline-block;
+            color: snow;
+            left: 20px;
+            padding-right: 10%;
+            text-decoration: none;
+            background-color: rgba(40, 40, 40, 0.0);
+            text-shadow: #002B7F;
+            text-align: center;
+            font-weight: bolder;
+        }
+        
+        header {
+            background-color: #111;
+            padding: 0.5rem;
+            grid-column: 1 / 4;
+            overflow: hidden;
+        }
+        
+        .left-sidebar {
+            background: lightblue;
+            grid-column: 1 / 2;
+            display: none;
+            /* not using left-sidebar
+            overflow-y: scroll;
+            */
+        }
+        
+        main {
+            grid-column: 2 / 3;
+            font-size: small;
+            overflow: scroll;
+        }
+        
+        .right-sidebar {
+            grid-column: 3 / 4;
+            display: none;
+            /* not using right-sidebar */
+        }
+        
+        footer {
+            background: wheat;
+            padding: 2rem;
+            text-align: center;
+            grid-column: 1 / 4;
+        }
+        
+        body {
+            font-size: 1.5em;
+            box-sizing: border-box;
+            margin: 0px;
+        }
+        
+        article {
+            background-color: snow;
+            padding: 1rem;
+            margin: 3px;
+            border: 2px solid rgba(200, 200, 200, 0.3);
+            border-radius: 2px 2px;
+        }
+        
+        section {
+            margin: 5px;
+        }
+        
+        .left-sidebar,
+        .right-sidebar {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        
+        .g-table {
+            border-radius: 2px;
+            border: 2px solid black;
+            padding: 5px;
+            background-color: lightgrey;
+        }
+        
+        .g-td {
+            background-color: #f6ff00;
+            padding: 2px;
+            border: 2px solid black;
+            display: inline;
+        }
+        
+        .g-tr {
+            display: block;
+            margin: 2px;
+            /* border: 2px dotted lime; */
+        }
+        
+        .g-none {
+            flex-direction: row;
+            flex-wrap: nowrap;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+        }
+        
+        div {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        }
+        
+        fieldset {
+            border: 3px solid black !important;
+            background-color: rgba(100, 113, 113, .3);
+        }
+        
+        legend {
+            z-index: 2;
+            background-color: rgba(170, 170, 170, 0.5);
+            width: 70%;
+            border-radius: 8px 8px;
+            padding-left: 1em;
+            margin-left: 1em;
+            font-size: 1.5em;
+        }
+        
+        .g-buttons {
+            padding: 0.5em;
+            /*
+            border: 1px solid black;
+            */
+            background-color: silver;
+        }
+        
+        .g {}
+        
+        .g-checkbox-pressed {
+            /* #FCD116; */
+            background-color: rgba(252, 209, 22, 1);
+            border: 2px solid black;
+        }
+        
+        .g-checkbox-not-pressed {
+            background-color: white !important;
+            border: 2px solid #002B7F !important;
+            color: gray !important;
+        }
+        
+        .g-case {
+            padding: 0.5em;
+            border: 2px solid silver;
+            border-radius: 2px 2px;
+            margin: 2px;
+        }
+        
+        .g-case-nom-acc {
+            background-color: wheat;
+        }
+        
+        .g-case-dat-gen {
+            background-color: beige;
+        }
+        
+        .g-m {
+            color: blue;
+        }
+        
+        .g-f {
+            color: red;
+        }
+        
+        .g-note {
+            background-color: white;
+            font-weight: bold;
+            border: 1px solid darkgray;
+            border-radius: 3px;
+        }
+        
+        
+        .g-sg {
+            font-weight: 200;
+            background-color: rgba(252, 209, 22, 1);
+            font-weight: bold;
+        }
+        
+        .g-pl {
+            font-weight: 800;
+            background-color: #f6ff00;
+            font-style: italic;
+        }
+        
+        .g-diff {
+            background-color: lightgray;
+            color: rgba(0, 0, 0, 0.75);
+            font-weight: bold;
+            border: 1px solid darkgray;
+            border-radius: 3px;
+        }
+        
+        .g-near {
+            font-size: 1.3rem;
+            background: white;
+        }
+        
+        .g-far {
+            font-size: 1.0rem;
+        }
+        
+        .g-identity {
+            font-size: 1.0rem;
+        }
+        
+        .g-checkbox {
+            margin: 0.1em;
+            padding: 0.2em;
+            border-radius: 0.5em;
+            text-align: center;
+            -webkit-box-shadow: 46px 32px 78px -12px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 46px 32px 78px -12px rgba(0, 0, 0, 0.75);
+            box-shadow: 46px 32px 78px -12px rgba(0, 0, 0, 0.75);
+        }
+        
+        .g-showing-group {
+            background-color: #002B7F;
+            color: white;
+            vertical-align: middle;
+            border-radius: 3px;
+            padding-left: 0.1rem;
+            margin-right: 0.2rem;
+        }
+        
+        .g-showing-label {
+            padding: 0.6rem;
+            vertical-align: middle;
+        }
+        
+        .g-showing {
+            display: inline;
+            background-color: 1px solid black;
+        }
+        
+        .g-checkbox-m {
+            /* 1 */
+            color: rgba(0, 0, 255, 1);
+            font-weight: bold;
+        }
+        
+        .g-checkbox-f {
+            /* 2 */
+            color: red;
+            box-shadow: 1rem;
+            font-weight: bold;
+        }
+        
+        .g-checkbox-sg {
+            /* 3 */
+            margin-left: 2rem;
+            color: black;
+        }
+        
+        .g-checkbox-pl {
+            /* 4 */
+            color: black;
+            font-style: italic;
+            background-color: #f6ff00;
+        }
+        
+        .g-checkbox-near {
+            /* 5 */
+            margin-left: 2rem;
+            color: black;
+            background-color: rgb(252, 209, 22);
+        }
+        
+        .g-checkbox-far {
+            /* 6 */
+            color: black;
+            background-color: rgb(252, 209, 22);
+        }
+        
+        .g-checkbox-identity {
+            /* 7 */
+            color: black;
+            background-color: rgb(252, 209, 22);
+        }
+
+        .g-checkbox-linguee {
+            margin-left: 2rem;
+            color: darkmagenta;
+        }
+        
+        .g-checkbox-reverso {
+            margin-left: 2rem;
+            color: darkred
+        }
+        
+        .g-checkbox-forvo {
+            margin-left: 2rem;
+            color: darkblue;
+        }
+    </style>
+
+    <style id="toggle-g-m">
+        .g-m,
+        .g.g-m.g-sg,
+        .g.g-m.g-pl {
+            display: inline;
+        }
+    </style>
+    <style id="toggle-g-f">
+        .g-f,
+        .g.g-f.g-sg,
+        .g.g-f.g-pl {
+            display: inline;
+        }
+    </style>
+    <style id="toggle-g-sg">
+        .g-sg,
+        .g.g-m.g-sg,
+        .g.g-f.g-sg {
+            visibility: hidden;
+        }
+    </style>
+    <style id="toggle-g-pl">
+        .g-pl,
+        .g.g-m.g-pl,
+        .g.g-f.g-pl {
+            visibility: hidden;
+        }
+    </style>
+    <style id="toggle-g-near">
+        .g-near, .g-near *, .g-note, .g-near .g.g-m.g-pl, .g-near .g.g-m.g-sg, .g-near .g.g-f.g-pl, .g-near .g.g-f.g-sg /* hack */
+        {
+            display: none;
+            visibility: hidden;
+        }
+    </style>
+    <style id="toggle-g-far">
+        .g-far, .g-far *,
+        .g-far g.g-m.g-sg.g-note,
+        .g-far g.g-f.g-sg.g-note,
+        .g-far g.g-m.g-pl.g-note,
+        .g-far g.g-f.g-pl.g-note,
+        .g-far .g-sg,
+        .g-far .g.g-m.g-sg,
+        .g-far .g.g-f.g-sg,
+        .g-far .g-pl,
+        .g-far .g.g-m.g-pl,
+        .g-far .g.g-f.g-pl
+        {
+            display: none;
+            visibility: hidden;
+        }
+    </style>
+    <style id="toggle-g-identity">
+        .g-identity, .g-identity * {
+            display: none;
+            visibility: hidden;
+        }
+    </style>
+
+    <script>
+        function setVisible(id, on) {
+            const sheet = document.querySelector("style#toggle-" + id).sheet;
+            for (let i = 0; i < sheet.cssRules.length; i++) {
+                const rule = sheet.cssRules[i];
+                if (rule.style.visibility) {
+                    rule.style.visibility = on ? "visible" : "hidden";
+                }
+                if (rule.style.display) {
+                    rule.style.display = on ? "inline" : "none";
+                }
+            };
+        }
+
+        function setClass(el, on, onClass, offClass) {
+            if (on) {
+                if (onClass) {
+                    el.classList.add(onClass);
+                }
+                if (offClass) {
+                    el.classList.remove(offClass);
+                }
+            } else {
+                if (onClass) {
+                    el.classList.remove(onClass);
+                }
+                if (offClass) {
+                    el.classList.add(offClass);
+                }
+            }
+        }
+
+        function set(el, on, onClass) {
+            setClass(el, on, onClass);
+            setVisible(el.id, on);
+        }
+
+        function invertClass(el, specificOnClass, specificOffClass) {
+            const onClass = 'g-checked';
+            const on = el.classList.contains(onClass);
+            set(el, !on, onClass);
+            set(el, !on, specificOnClass, specificOffClass);
+        }
+
+        function toggleCheckbox(el) {
+            invertClass(el, 'g-checkbox-pressed', 'g-checkbox-not-pressed');
+        }
+
+        function reversoUrl(word) {
+            const first = word.split("/")[0];
+            return `https://context.reverso.net/translation/romanian-english/${first}`;
+        }
+
+        function lingueeUrl(word) {
+            const first = word.split("/")[0];
+            return `https://www.linguee.com/english-romanian/search?query=${first}`;
+        }
+        
+        function forvoUrl(word) {
+            const first = word.split("/")[0];
+            return `https://forvo.com/word/${first}/#ro`;
+        }
+
+        var urlButton;
+        var urlFunction;
+
+        function use(el, fn) {
+            if (urlButton) {
+                urlButton.classList.remove("g-checkbox-pressed");
+                urlButton.classList.add("g-checkbox-not-pressed");
+            }
+            urlButton = el;
+            urlButton.classList.add("g-checkbox-pressed");
+            urlButton.classList.remove("g-checkbox-not-pressed");
+            urlFunction = fn;
+        }
+
+        function urlOf(word) {
+            return urlFunction ? urlFunction(word) : null;
+        }
+
+        function initWords() {
+            document.getElementById("linguee").classList.add("g-checkbox-not-pressed");
+            document.getElementById("reverso").classList.add("g-checkbox-not-pressed");
+            document.getElementById("forvo").classList.add("g-checkbox-not-pressed");
+            const wordElements = document.getElementsByClassName("g-td");
+            let text = "";
+            for (let i = 0; i < wordElements.length; i++) {
+                const wordElement = wordElements[i];
+                text += ("" + i + " " + wordElement.innerText + "\n");
+            }
+            for (let i = 0; i < wordElements.length; i++) {
+                const wordElement = wordElements[i];
+                const parentElement = wordElement.parentElement;
+                const word = wordElement.innerText;
+                const a = document.createElement("span");
+                a.id = "word_" + i;
+                parentElement.insertBefore(a, wordElement);
+                parentElement.removeChild(wordElement);
+                a.appendChild(wordElement);
+                a.onclick = (ev) => {
+                    const url = urlOf(word);
+                    if (url) {
+                        window.open(url, word, "popup");
+                    }
+                }
+                text += ("" + i + " " + a.onclick + "\n");
+            }
+        }
+    </script>
+
+    <header id="header">
+        <span class="flag"><span class="flag-b" >&nbsp;</span><span class="flag-y">&nbsp;</span><span class="flag-r">&nbsp;</span> </span>
+        <span class="title"><a class="title" href="https://www.duolingo.com/skill/ro/Demonstrative-Pronouns-and-Pronominal-Adjectives/tips-and-notes">Pronumele
+                demonstrative în limba Română</a></span>
+        <div class="g g-buttons g-showing-group">
+            <div class="g g-showing-label">Arată!</div>
+            <span id="g-m" class="g g-checkbox g-checkbox-m " onclick="toggleCheckbox(this);">m</span>
+            <span id="g-f" class="g g-checkbox g-checkbox-f " onclick="toggleCheckbox(this);">f</span>
+            <span id="g-sg" class="g g-checkbox g-checkbox-sg " onclick="toggleCheckbox(this);">sg</span>
+            <span id="g-pl" class="g g-checkbox g-checkbox-pl " onclick="toggleCheckbox(this);">pl</span>
+            <span id="g-near" class="g g-checkbox g-checkbox-near " onclick="toggleCheckbox(this);">aproape</span>
+            <span id="g-far" class="g g-checkbox g-checkbox-far " onclick="toggleCheckbox(this);">departe</span>
+            <span id="g-identity" class="g g-checkbox g-checkbox-identity " onclick="toggleCheckbox(this);">identitate</span>
+            <span id="linguee" class="g g-checkbox g-checkbox-linguee" name="linguee" onclick="use(this, lingueeUrl)">Linguee</span>
+            <span id="reverso" class="g g-checkbox g-checkbox-reverso" name="reverso" onclick="use(this, reversoUrl)">Reverso</span>
+            <span id="forvo" class="g g-checkbox g-checkbox-forvo" name="forvo" onclick="use(this, forvoUrl)">Forvo</span>
+        </div>
+    </header>
+    <div id="left" class="left-sidebar"></div>
+    <main id="main">
+        <div class="g g-case g-case-nom-acc">
+            <fieldset>
+                <legend>Caz nominativ/acuzativ</legend>
+                <div>
+                    <article class="g g-near">
+                        <aside>
+                            <h2>aproape <small>(<span class="g g-m g-sg g-note">sta</span><span class="g g-m">,</span><span
+                                        class="g g-m g-pl g-note">știa</span>;<span class="g g-f"><span
+                                            class="g g-sg g-note">asta</span><span class="g g-f">,</span><span
+                                            class="g g-pl g-note">stea</span></span>)</small></h2>
+                        </aside>
+                        <section>
+                            <div class="g-table">
+                                <div class="g-tr g g-m">
+                                    <div class="g-td g g-sg">ace<span class="g g-diff">sta</span></div>
+                                    <div class="g-td g g-pl">ace<span class="g g-diff">știa</span></div>
+                                </div>
+                                <div class="g-tr g g-f">
+                                    <div class="g-td g g-sg">ace<span class="g g-diff">asta</span></div>
+                                    <div class="g-td g g-pl">ace<span class="g g-diff">stea</span></div>
+                                </div>
+                            </div>
+                        </section>
+                    </article>
+                    <article class="g g-far">
+                        <aside>
+                            <h2>departe <small>(<span class="g g-m"><span class="g g-sg g-note">la</span>,<span
+                                            class="g g-pl g-note">ia</span></span>;<span class="g g-f"><span
+                                            class="g g-sg g-note">ea</span>,<span
+                                            class="g g-pl g-note">lea</span></span>)</small></h2>
+                        </aside>
+                        <section>
+                            <div class="g-table">
+                                <div class="g-tr g g-m">
+                                    <div class="g-td g g-sg">ace<span class="g g-diff">la</span>/ce<span class="g g-diff">lă</span>lalt</div>
+                                    <div class="g-td g g-pl">ace<span class="g g-diff">ia</span>/ce<span class="g g-diff">i</span>lal<span class="g g-diff">ți</span></div>
+                                </div>
+                                <div class="g-tr g g-f">
+                                    <div class="g-td g g-sg">ace<span class="g g-diff">ea</span>/ce<span class="g g-diff">a</span>lalt<span class="g g-diff">ă</span></div>
+                                    <div class="g-td g g-pl">ace<span class="g g-diff">lea</span>/ce<span class="g g-diff">le</span>lalt<span class="g g-diff">e</span></div>
+                                </div>
+                            </div>
+                        </section>
+                    </article>
+                    <article class="g g-identity">
+                        <aside>
+                            <h2>identitate <small>(departe+<span class="g-note">și</span>)</small></h2>
+                        </aside>
+                        <section>
+                            <div class="g-table">
+                                <div class="g g-tr g-m">
+                                    <div class="g g-td g-sg">ace<span class="g g-diff">la</span>și</div>
+                                    <div class="g g-td g-pl">ace<span class="g g-diff">ia</span>și</div>
+                                </div>
+                                <div class="g g-tr g-f">
+                                    <div class="g g-td g-sg">ace<span class="g g-diff">ea</span>și</div>
+                                    <div class="g g-td g-pl">ace<span class="g g-diff">lea</span>și</div>
+                                </div>
+                            </div>
+                        </section>
+                    </article>
+                </div>
+            </fieldset>
+        </div>
+        <div class="g g-case g-case-dat-gen">
+            <fieldset>
+                <legend>Caz dativ/genitiv</legend>
+                <div>
+                    <article class="g g-near">
+                        <aside>
+                            <h2>aproape <small>(<span class="g g-m g-sg g-note">stuia</span><span class="g g-m">,</span><span
+                                        class="g g-m g-pl g-note">stora</span>;<span class="g g-f g-sg g-note">steia</span><span
+                                        class="g g-f">,</span><span class="g g-f g-pl g-note">stora</span>)</small></h2>
+                        </aside>
+                        <section>
+                            <div class="g-table">
+                                <div class="g g-tr g-m">
+                                    <div class="g g-td g-sg">ace<span class="g g-diff">stuia</span></div>
+                                    <div class="g g-td g-pl">ace<span class="g g-diff">stora</span></div>
+                                </div>
+                                <div class="g g-tr g-f">
+                                    <div class="g g-td g-sg">ace<span class="g g-diff">steia</span></div>
+                                    <div class="g g-td g-pl">ace<span class="g g-diff">stora</span></div>
+                                </div>
+                            </div>
+                        </section>
+                    </article>
+                    <article class="g g-far">
+                        <aside>
+                            <h2>departe <small>(<span class="g g-m g-sg g-note">luia</span><span class="g g-m">,</span><span
+                                        class="g g-m g-pl g-note">lora</span>;<span class="g g-f g-sg g-note">leia</span><span
+                                        class="g g-f">,</span><span
+                                        class="g g-f g-pl g-note">lora</span>)</small></h2>
+                        </aside>
+                        <section>
+                            <div class="g-table">
+                                <div class="g g-tr g-m">
+                                    <div class="g g-td g-sg">ace<span class="g g-diff">luia</span>/ce<span class="g g-diff">lui</span>lalt<span class="g g-diff"></span></div>
+                                    <div class="g g-td g-pl">ace<span class="g g-diff">lora</span>/ce<span class="g g-diff">lor</span>lal<span class="g g-diff">ți</span></div>
+                                </div>
+                                <div class="g g-tr g-f">
+                                    <div class="g g-td g-sg">ace<span class="g g-diff">leia</span>/ce<span class="g g-diff">lei</span>lalt<span class="g g-diff">e</span></div>
+                                    <div class="g g-td g-pl">ace<span class="g g-diff">lora</span>/ce<span class="g g-diff">lor</span>lalt<span class="g g-diff">e</span></div>
+                                </div>
+                            </div>
+                        </section>
+                    </article>
+                    <article class="g g-identity">
+                        <aside>
+                            <h2>identitate <small>(departe+<span class="g-note">și</span>)</small></h2>
+                        </aside>
+                        <section>
+                            <div class="g-table">
+                                <div class="g g-tr g-m">
+                                    <div class="g g-td g-sg">ace<span class="g g-diff">luia</span>și</div>
+                                    <div class="g g-td g-pl">ace<span class="g g-diff">lora</span>și</div>
+                                </div>
+                                <div class="g g-tr g-f">
+                                    <div class="g g-td g-sg">ace<span class="g g-diff">leia</span>și</div>
+                                    <div class="g g-td g-pl">ace<span class="g g-diff">lora</span>și</div>
+                                </div>
+                            </div>
+                        </section>
+                    </article>
+                </div>
+            </fieldset>
+        </div>
+    </main>
+    <div id="right" class="right-sidebar"></div>
+    <footer id="footer" class="g g-buttons">
+    </footer>
+    <script>
+        /* hack */
+        const claOn = "g-checkbox-pressed";
+        const claOff = "g-checkbox-not-pressed";
+        for (let id of["g-m", "g-f", "g-sg", "g-pl", "g-near", "g-far", "g-identity"]) {
+            const el = document.getElementById(id);
+            tog(el, claOn, claOff);
+        }
+        initWords();
+    </script>
+</body>
+
+</html>
