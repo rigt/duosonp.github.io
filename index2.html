@@ -458,6 +458,7 @@
             const onClass = 'g-checked';
             const on = el.classList.contains(onClass);
             set(el, !on, onClass);
+            set(el, on, specificOnClass, specificOffClass);
             set(el, !on, specificOnClass, specificOffClass);
         }
 
@@ -681,11 +682,9 @@
     </footer>
     <script>
         /* hack */
-        const claOn = "g-checkbox-pressed";
-        const claOff = "g-checkbox-not-pressed";
         for (let id of["g-m", "g-f", "g-sg", "g-pl", "g-near", "g-far", "g-identity"]) {
             const el = document.getElementById(id);
-            tog(el, claOn, claOff);
+            toggleCheckbox(el);
         }
         initWords();
     </script>
