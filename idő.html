@@ -18,13 +18,13 @@
             color: #FFFFFF;
             background-color: #436F4D;
         }
-        
+
         .numeric {
             padding-left: 1em;
             padding-right: 1em;
             color: yellow;
         }
-        
+
         .common {
             padding-left: 1em;
             padding-right: 1em;
@@ -32,7 +32,7 @@
             font-style: oblique;
             font-family: Georgia, 'Times New Roman', Times, serif;
         }
-        
+
         .formal {
             padding-left: 1em;
             padding-right: 1em;
@@ -226,13 +226,21 @@
             root.appendChild(el);
         }
 
-        function renderText(root, text, textClass) {
+        function renderText(root, text, textClass, href) {
             const el = document.createElement("span");
             el.innerText = text;
             if (textClass) {
                 el.setAttribute("class", textClass);
             }
-            root.appendChild(el);
+            if (href) {
+                const anchor = document.createElement("a");
+                anchor.setAttribute("href", "https://www.deepl.com/translator#hu/en/" + text);
+                anchor.setAttribute("style", "text-decoration:none");
+                anchor.appendChild(el);
+                root.appendChild(anchor);
+            } else {
+                root.appendChild(el);
+            }
         }
 
         function renderTextForTime(root, hours, minutes) {
@@ -240,11 +248,12 @@
             const numeric = "" + hours + ":" + ("" + minutes).padStart(2, '0');
             const common = commonHoursMinutes(hours, minutes);
             const formal = formalHoursMinutes(hours, minutes);
+            const deepl = "https://www.deepl.com/translator#hu/en/";
             renderText(el, numeric, "numeric");
             renderText(el, "=");
-            renderText(el, common, "common");
+            renderText(el, common, "common", deepl);
             renderText(el, "/");
-            renderText(el, formal, "formal");
+            renderText(el, formal, "formal", deepl);
             root.appendChild(el);
         }
 
