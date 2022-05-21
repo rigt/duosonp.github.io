@@ -221,7 +221,7 @@
             for (let dotHour = 0; dotHour <= 11; dotHour++) {
                 drawEdgeDot(ctx, cx, cy, radius, hoursAsRadians(dotHour));
             }
-            drawPointer(ctx, cx, cy, radius, 9, 0.6, hoursAsRadians(hours), "yellow");
+            drawPointer(ctx, cx, cy, radius, 9, 0.6, hoursAsRadians(hours + (1.0 * minutes / 60.0)), "yellow");
             drawPointer(ctx, cx, cy, radius, 7, 0.9, minutesAsRadians(minutes), "yellow");
             root.appendChild(el);
         }
