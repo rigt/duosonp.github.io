@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Idő Magyarul</title>
+    <meta http-equiv="refresh" content="1">
 </head>
 
 <body>
@@ -154,8 +155,22 @@
             return quarter == 0 ? "" : hourPart[quarter];
         }
 
+        function commonEnd(hours, minutes) {
+            if (minutes == 0 && hours % 12 != 0) {
+                return " óra";
+            }
+            return "";
+        }
+
+        function fixTwo(sentence) {
+            return sentence.trim().replace("kettő ", "két ");
+        }
+
         function commonHoursMinutes(hours, minutes) {
-            return commonDayPart(hours, minutes) + " " + commonQuarter(hours, minutes) + commonHour(hours, minutes) + " óra van";
+            return commonDayPart(hours, minutes) + " "
+                + commonQuarter(hours, minutes)
+                + commonHour(hours, minutes)
+                + commonEnd(hours, minutes);
         }
 
         function formalHoursMinutes(hours, minutes) {
@@ -228,7 +243,7 @@
 
         function renderText(root, text, textClass, href) {
             const el = document.createElement("span");
-            el.innerText = text;
+            el.innerText = fixTwo(text);
             if (textClass) {
                 el.setAttribute("class", textClass);
             }
