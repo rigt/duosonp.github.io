@@ -273,6 +273,8 @@
         function renderTimeCard(root, hours, minutes) {
             const el = document.createElement("div");
             el.setAttribute("class", "card");
+            const cardId = "card_" + hours + "_" + minutes;
+            el.setAttribute("id", cardId);
             const hoursNumber = Number.parseInt(hours) % 24;
             const minutesNumber = Number.parseInt(minutes);
             renderClockForTime(el, hoursNumber, minutesNumber);
@@ -291,18 +293,35 @@
         const root = document.getElementsByTagName("body")[0];
         renderTimeCards(root);
 
+        let scrolling = false;
+
         const tops = [];
         const cards = document.getElementsByClassName("card");
         for (let i = 0; i < cards.length; i++) {
             tops.push(cards[i].offsetTop);
         }
         let topIndex = 0;
+        let timeoutId = null;
         function scrollToTime() {
-            topIndex = (topIndex + 1) % tops.length;
-            const y = tops[topIndex];
-            window.scrollTo(0, y);
+            if (scrolling) {
+                topIndex = (topIndex + 1) % tops.length;
+                const y = tops[topIndex];
+                window.scrollTo(0, y);
+            } else {
+                const now = new Date();
+                const hours = now.getHours() % 24;
+                const minutes = 15 * Math.floor(now.getMinutes() / 15);
+                const cardId = "card_" + hours + "_" + minutes;
+                const card = document.getElementById(cardId);
+                if (card) {
+                    window.scrollTo({left: 0, top: card.offsetTop, behavior: "smooth"});
+                }
+            }
         }
-        window.setInterval(scrollToTime, 1000);
+        timeoutId = window.setInterval(scrollToTime, 1000);
+        document.getElementsByTagName("body")[0].addEventListener("mouseup", (ev) => {
+            scrolling = !scrolling;
+        });
     </script>
 
 </body>
