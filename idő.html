@@ -275,8 +275,8 @@
             el.setAttribute("class", "card");
             const hoursNumber = Number.parseInt(hours) % 24;
             const minutesNumber = Number.parseInt(minutes);
-            renderTextForTime(el, hoursNumber, minutesNumber);
             renderClockForTime(el, hoursNumber, minutesNumber);
+            renderTextForTime(el, hoursNumber, minutesNumber);
             root.appendChild(el);
         }
 
