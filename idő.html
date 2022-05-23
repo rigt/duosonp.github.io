@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Idő Magyarul</title>
-    <meta http-equiv="refresh" content="1">
 </head>
 
 <body>
@@ -250,7 +249,7 @@
             if (href) {
                 const anchor = document.createElement("a");
                 anchor.setAttribute("href", "https://www.deepl.com/translator#hu/en/" + text);
-                anchor.setAttribute("style", "text-decoration:none");
+                anchor.setAttribute("style", "text-decoration:none;display:block;");
                 anchor.appendChild(el);
                 root.appendChild(anchor);
             } else {
@@ -267,7 +266,6 @@
             renderText(el, numeric, "numeric");
             renderText(el, "=");
             renderText(el, common, "common", deepl);
-            renderText(el, "/");
             renderText(el, formal, "formal", deepl);
             root.appendChild(el);
         }
@@ -292,6 +290,19 @@
 
         const root = document.getElementsByTagName("body")[0];
         renderTimeCards(root);
+
+        const tops = [];
+        const cards = document.getElementsByClassName("card");
+        for (let i = 0; i < cards.length; i++) {
+            tops.push(cards[i].offsetTop);
+        }
+        let topIndex = 0;
+        function scrollToTime() {
+            topIndex = (topIndex + 1) % tops.length;
+            const y = tops[topIndex];
+            window.scrollTo(0, y);
+        }
+        window.setInterval(scrollToTime, 1000);
     </script>
 
 </body>
