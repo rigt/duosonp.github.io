@@ -26,18 +26,19 @@
         }
 
         .common {
-            padding-left: 1em;
-            padding-right: 1em;
+            padding-left: 1rem;
+            padding-right: 1rem;
             color: #FFFFFF;
             font-style: oblique;
             font-family: Georgia, 'Times New Roman', Times, serif;
         }
 
         .formal {
-            padding-left: 1em;
-            padding-right: 1em;
+            padding-left: 1rem;
+            padding-right: 1rem;
             color: #FFFFFF;
             font-family: Arial, Helvetica, sans-serif;
+            font-size: small;
         }
     </style>
 
@@ -165,6 +166,10 @@
             return sentence.trim().replace("kettő ", "két ");
         }
 
+        function fixHourNull(sentence) {
+            return sentence.trim().replace("nulla", "tizenkett");
+        }
+
         function commonHoursMinutes(hours, minutes) {
             return commonDayPart(hours, minutes) + " "
                 + commonQuarter(hours, minutes)
@@ -174,8 +179,7 @@
 
         function formalHoursMinutes(hours, minutes) {
             return numbers[Number.parseInt(hours, 10)] + " óra " +
-                (minutes == 0 ? "" : (" " + numberTextOf(minutes) + " perc")) +
-                " van";
+                (minutes == 0 ? "" : (" " + numberTextOf(minutes) + " perc"));
         }
 
         function drawFace(ctx, cx, cy, radius) {
@@ -242,7 +246,7 @@
 
         function renderText(root, text, textClass, href) {
             const el = document.createElement("span");
-            el.innerText = fixTwo(text);
+            el.innerText = fixHourNull(fixTwo(text));
             if (textClass) {
                 el.setAttribute("class", textClass);
             }
@@ -264,7 +268,6 @@
             const formal = formalHoursMinutes(hours, minutes);
             const deepl = "https://www.deepl.com/translator#hu/en/";
             renderText(el, numeric, "numeric");
-            renderText(el, "=");
             renderText(el, common, "common", deepl);
             renderText(el, formal, "formal", deepl);
             root.appendChild(el);
