@@ -166,10 +166,6 @@
             return sentence.trim().replace("kettő ", "két ");
         }
 
-        function fixHourNull(sentence) {
-            return sentence.trim().replace("nulla", "tizenkett");
-        }
-
         function commonHoursMinutes(hours, minutes) {
             return commonDayPart(hours, minutes) + " "
                 + commonQuarter(hours, minutes)
@@ -246,7 +242,7 @@
 
         function renderText(root, text, textClass, href) {
             const el = document.createElement("span");
-            el.innerText = fixHourNull(fixTwo(text));
+            el.innerText = fixTwo(text);
             if (textClass) {
                 el.setAttribute("class", textClass);
             }
