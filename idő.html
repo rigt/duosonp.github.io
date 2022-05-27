@@ -19,6 +19,10 @@
             background-color: #436F4D;
         }
 
+        canvas {
+            padding-right: 2.5rem;
+        }
+
         .numeric {
             padding-left: 1em;
             padding-right: 1em;
@@ -39,6 +43,10 @@
             color: #FFFFFF;
             font-family: Arial, Helvetica, sans-serif;
             font-size: small;
+        }
+
+        canvas:hover, .common:hover, .formal:hover {
+            background-color: rgba(0, 0, 0, 0.1);
         }
     </style>
 
@@ -222,13 +230,13 @@
             return (2 * Math.PI * (45.0 + minutes)) / 60.0;
         }
 
-        function renderClockForTime(root, hours, minutes) {
+        function createClockForTime(hours, minutes) {
             const el = document.createElement("canvas");
-            const clockId = "clock_" + hours + "_" + minutes;
-            el.setAttribute("id", clockId);
+            const canvasClockId = "clock_" + hours + "_" + minutes;
+            el.setAttribute("id", canvasClockId);
+            el.setAttribute("class", "clock");
             el.setAttribute("width", 155);
             el.setAttribute("height", 155);
-            root.appendChild(el);
             const ctx = el.getContext("2d");
             const cx = 100;
             const cy = 75;
@@ -239,6 +247,11 @@
             }
             drawPointer(ctx, cx, cy, radius, 9, 0.6, hoursAsRadians(hours + (1.0 * minutes / 60.0)), "yellow");
             drawPointer(ctx, cx, cy, radius, 7, 0.9, minutesAsRadians(minutes), "yellow");
+            return el;
+        }
+
+        function renderClockForTime(root, hours, minutes) {
+            const el = createClockForTime(hours, minutes);
             root.appendChild(el);
         }
 
@@ -326,26 +339,53 @@
             const formals = document.getElementsByClassName("formal");
             let allText = "";
             for (let i = 0; i < numerics.length; i++) {
+                allText += "<div>";
                 allText += numerics[i].innerText + " ";
-                allText += commons[i].innerText + " (";
-                allText += formals[i].innerText + ")\n";
+                allText += "<b>" + commons[i].innerText + "</b> ";
+                allText += "<small>(" + formals[i].innerText + ")</small>";
+                allText += "</div>";
             }
             const info = document.createElement("div");
             info.setAttribute("id", id);
             info.setAttribute("style", "background-color:yellow; border:2px solid red; padding:1rem; position:absolute; z-index:10; top:" + window.scrollY + "px; left:0px");
-            info.innerText = allText;
+            info.innerHTML = allText;
             root.appendChild(info);
         };
 
-        root.addEventListener("mouseup", (ev) => {
-            const id = "info";
-            const info = document.getElementById(id);
+        const infoId = "info";
+
+        function removeInfo() {
+            const info = document.getElementById(infoId);
             if (info) {
                 root.removeChild(info);
-            } else {
-                createInfo(id);
+            }
+            return info != null;
+        }
+
+        function addInfo() {
+            const info = document.getElementById(infoId);
+            if (info) {
+                root.removeChild(info);
+            }
+            createInfo(infoId);
+        }
+
+        root.addEventListener("mouseup", (ev) => {
+            if (!removeInfo()) {
+                addInfo();
             }
         });
+
+        const clocks = document.getElementsByClassName("clock");
+        for (let i = 0; i < clocks.length; i++) {
+            const clock = clocks[i];
+            clock.addEventListener("mouseup", (ev) => {
+                ev.stopPropagation();
+                removeInfo();
+                currentCard = null;
+                scrollToNow();
+            });
+        }
     </script>
 
 </body>
