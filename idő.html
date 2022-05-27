@@ -224,6 +224,8 @@
 
         function renderClockForTime(root, hours, minutes) {
             const el = document.createElement("canvas");
+            const clockId = "clock_" + hours + "_" + minutes;
+            el.setAttribute("id", clockId);
             el.setAttribute("width", 155);
             el.setAttribute("height", 155);
             root.appendChild(el);
@@ -275,6 +277,8 @@
             el.setAttribute("class", "card");
             const cardId = "card_" + hours + "_" + minutes;
             el.setAttribute("id", cardId);
+            el.setAttribute("data-hours", hours);
+            el.setAttribute("data-minutes", minutes);
             const hoursNumber = Number.parseInt(hours) % 24;
             const minutesNumber = Number.parseInt(minutes);
             renderClockForTime(el, hoursNumber, minutesNumber);
@@ -293,34 +297,54 @@
         const root = document.getElementsByTagName("body")[0];
         renderTimeCards(root);
 
-        let scrolling = false;
+        let currentCard = null;
 
-        const tops = [];
-        const cards = document.getElementsByClassName("card");
-        for (let i = 0; i < cards.length; i++) {
-            tops.push(cards[i].offsetTop);
-        }
-        let topIndex = 0;
-        let timeoutId = null;
-        function scrollToTime() {
-            if (scrolling) {
-                topIndex = (topIndex + 1) % tops.length;
-                const y = tops[topIndex];
-                window.scrollTo(0, y);
-            } else {
-                const now = new Date();
-                const hours = now.getHours() % 24;
-                const minutes = 15 * Math.floor(now.getMinutes() / 15);
-                const cardId = "card_" + hours + "_" + minutes;
-                const card = document.getElementById(cardId);
-                if (card) {
-                    window.scrollTo({left: 0, top: card.offsetTop, behavior: "smooth"});
-                }
+        function scrollToNow() {
+            const now = new Date();
+            const hours = now.getHours() % 24;
+            const minutes = 15 * Math.floor(now.getMinutes() / 15);
+            const cardId = "card_" + hours + "_" + minutes;
+            const card = document.getElementById(cardId);
+            if (currentCard != card) {
+                window.scrollTo({ left: 0, top: card.offsetTop, behavior: "smooth" });
+                currentCard = card;
             }
         }
-        timeoutId = window.setInterval(scrollToTime, 1000);
-        document.getElementsByTagName("body")[0].addEventListener("mouseup", (ev) => {
-            scrolling = !scrolling;
+
+        function tick() {
+            scrollToNow();
+        }
+
+        window.setInterval(scrollToNow, 10000); // 10 seconds
+
+        scrollToNow();
+
+        function createInfo(id) {
+            if (document.getElementById("info")) return;
+            const numerics = document.getElementsByClassName("numeric");
+            const commons = document.getElementsByClassName("common");
+            const formals = document.getElementsByClassName("formal");
+            let allText = "";
+            for (let i = 0; i < numerics.length; i++) {
+                allText += numerics[i].innerText + " ";
+                allText += commons[i].innerText + " (";
+                allText += formals[i].innerText + ")\n";
+            }
+            const info = document.createElement("div");
+            info.setAttribute("id", id);
+            info.setAttribute("style", "background-color:yellow; border:2px solid red; padding:1rem; position:absolute; z-index:10; top:" + window.scrollY + "px; left:0px");
+            info.innerText = allText;
+            root.appendChild(info);
+        };
+
+        root.addEventListener("mouseup", (ev) => {
+            const id = "info";
+            const info = document.getElementById(id);
+            if (info) {
+                root.removeChild(info);
+            } else {
+                createInfo(id);
+            }
         });
     </script>
 
