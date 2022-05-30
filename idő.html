@@ -155,7 +155,7 @@
                     return dayPoints[1][1];
                 }
             }
-            return hours12 == 0 ? "" : (" " + numbers[hours12]);
+            return " " + (adjustedHour == 0 ? numbers[12] : numbers[hours12]);
         }
 
         function commonQuarter(hours, minutes) {
