@@ -174,6 +174,10 @@
             return sentence.trim().replace("kettő ", "két ");
         }
 
+        function numericHoursMinutes(hours, minutes) {
+            return "" + hours + ":" + ("" + minutes).padStart(2, '0');
+        }
+
         function commonHoursMinutes(hours, minutes) {
             return commonDayPart(hours, minutes) + " "
                 + commonQuarter(hours, minutes)
@@ -230,6 +234,14 @@
             return (2 * Math.PI * (45.0 + minutes)) / 60.0;
         }
 
+        function drawTimeText(ctx, cx, cy, radius, hours, minutes) {
+            ctx.font = "14px serif";
+            ctx.fillStyle = "yellow";
+            const timeText = numericHoursMinutes(hours, minutes);
+            const textMetrics = ctx.measureText(timeText);
+            ctx.fillText(timeText, cx - textMetrics.width / 2, cy + 0.6 * radius);
+        }
+
         function createClockForTime(hours, minutes) {
             const el = document.createElement("canvas");
             const canvasClockId = "clock_" + hours + "_" + minutes;
@@ -247,6 +259,7 @@
             }
             drawPointer(ctx, cx, cy, radius, 9, 0.6, hoursAsRadians(hours + (1.0 * minutes / 60.0)), "yellow");
             drawPointer(ctx, cx, cy, radius, 7, 0.9, minutesAsRadians(minutes), "yellow");
+            drawTimeText(ctx, cx, cy, radius, hours, minutes);
             return el;
         }
 
@@ -275,7 +288,7 @@
 
         function renderTextForTime(root, hours, minutes) {
             const el = document.createElement("div");
-            const numeric = "" + hours + ":" + ("" + minutes).padStart(2, '0');
+            const numeric = numericHoursMinutes(hours, minutes);
             const common = commonHoursMinutes(hours, minutes);
             const formal = formalHoursMinutes(hours, minutes);
             const deepl = "https://www.deepl.com/translator#hu/en/";
@@ -312,16 +325,20 @@
 
         let currentCard = null;
 
-        function scrollToNow() {
-            const now = new Date();
-            const hours = now.getHours() % 24;
-            const minutes = 15 * Math.floor(now.getMinutes() / 15);
+        function scrollToHoursMinutes(hours, minutes) {
             const cardId = "card_" + hours + "_" + minutes;
             const card = document.getElementById(cardId);
             if (currentCard != card) {
                 window.scrollTo({ left: 0, top: card.offsetTop, behavior: "smooth" });
                 currentCard = card;
             }
+        }
+
+        function scrollToNow() {
+            const now = new Date();
+            const hours = now.getHours() % 24;
+            const minutes = 15 * Math.floor(now.getMinutes() / 15);
+            scrollToHoursMinutes(hours, minutes);
         }
 
         function tick() {
