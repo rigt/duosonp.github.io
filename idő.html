@@ -242,7 +242,7 @@
 
         function drawTimeText(ctx, cx, cy, radius, hours, minutes) {
             ctx.font = "14px serif";
-            ctx.fillStyle = "white";
+            ctx.fillStyle = "gold";
             const timeText = numericHoursMinutes(hours, minutes);
             const textMetrics = ctx.measureText(timeText);
             ctx.fillText(timeText, cx - textMetrics.width / 2, cy + 0.6 * radius);
