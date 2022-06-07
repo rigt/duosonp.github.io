@@ -300,7 +300,7 @@
             const formal = formalHoursMinutes(hours, minutes);
             const deepl = "https://www.deepl.com/translator#hu/en/";
             renderText(el, common, "common", deepl);
-            renderText(el, "(" + numeric + ") " + formal, "formal", deepl);
+            renderText(el, formal, "formal", deepl);
             root.appendChild(el);
         }
 
@@ -316,6 +316,12 @@
             renderClockForTime(el, hoursNumber, minutesNumber);
             renderTextForTime(el, hoursNumber, minutesNumber);
             root.appendChild(el);
+        }
+
+        function getTimeOfCard(el) {
+            const hours = el.getAttribute("data-hours");
+            const minutes = el.getAttribute("data-minutes");
+            return numericHoursMinutes(hours, minutes);
         }
 
         function renderTimeCards(root) {
@@ -357,13 +363,13 @@
 
         function createInfo(id) {
             if (document.getElementById("info")) return;
-            const numerics = document.getElementsByClassName("numeric");
+            const cards = document.getElementsByClassName("card");
             const commons = document.getElementsByClassName("common");
             const formals = document.getElementsByClassName("formal");
             let allText = "";
-            for (let i = 0; i < numerics.length; i++) {
+            for (let i = 0; i < cards.length; i++) {
                 allText += "<div>";
-                allText += numerics[i].innerText + " ";
+                allText += "<span>" + getTimeOfCard(cards[i]) + "</span> ";
                 allText += "<b>" + commons[i].innerText + "</b> ";
                 allText += "<small>(" + formals[i].innerText + ")</small>";
                 allText += "</div>";
