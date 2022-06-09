@@ -307,12 +307,12 @@
         function renderTimeCard(root, hours, minutes) {
             const el = document.createElement("div");
             el.setAttribute("class", "card");
-            const cardId = "card_" + hours + "_" + minutes;
-            el.setAttribute("id", cardId);
-            el.setAttribute("data-hours", hours);
-            el.setAttribute("data-minutes", minutes);
             const hoursNumber = Number.parseInt(hours) % 24;
             const minutesNumber = Number.parseInt(minutes);
+            const cardId = "card_" + hours + "_" + minutes;
+            el.setAttribute("id", cardId);
+            el.setAttribute("data-hours", hoursNumber);
+            el.setAttribute("data-minutes", minutes);
             renderClockForTime(el, hoursNumber, minutesNumber);
             renderTextForTime(el, hoursNumber, minutesNumber);
             root.appendChild(el);
